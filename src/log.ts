@@ -9,7 +9,7 @@ export function debug(message: string): void {
 }
 
 export function log(message: string): void {
-  console.log(`JIRA prepare commit msg > ${message}`);
+  console.log(`${message}`);
 }
 
 export function error(err: string): void {

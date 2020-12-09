@@ -13,10 +13,9 @@ import { error, log } from './log';
     const ticket = git.getJiraTicket(branch, config);
 
     if (ticket) {
-      log(`🎫 Adding JIRA ticket ID ${ticket}`);
+      log(`🎫 Adding \x1B[1mJIRA\x1B[22m ticket ID ${config.jiraHost}/browse/${ticket}`);
       git.writeJiraTicket(ticket, config);
     }
-
   } catch (err) {
     error(err);
   }

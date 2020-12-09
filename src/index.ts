@@ -14,9 +14,9 @@ import { error, log } from './log';
 
     if (ticket) {
       log(`Adding JIRA ticket ID ${ticket}`);
+      git.writeJiraTicket(ticket, config);
     }
 
-    git.writeJiraTicket(ticket, config);
   } catch (err) {
     error(err);
   }

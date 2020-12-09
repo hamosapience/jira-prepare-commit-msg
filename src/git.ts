@@ -5,7 +5,7 @@ import { JPCMConfig } from './config';
 import { debug } from './log';
 
 // eslint-disable-next-line max-len
-const conventionalCommitRegExp = /^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z ]+\)!?)?: ([\w \S]+)$/g;
+const conventionalCommitRegExp = /^(abtest|hotfix|feature|wip|build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z ]+\)!?)?: ([\w \S]+)$/ig;
 
 function getMsgFilePath(index = 0): string {
   debug('getMsgFilePath');
@@ -94,7 +94,7 @@ export async function getBranchName(gitRoot: string): Promise<string> {
   });
 }
 
-export function getJiraTicket(branchName: string, config: JPCMConfig): string {
+export function getJiraTicket(branchName: string, config: JPCMConfig): string | void {
   debug('getJiraTicket');
 
   const jiraIdPattern = new RegExp(config.jiraTicketPattern, 'i');
@@ -102,7 +102,7 @@ export function getJiraTicket(branchName: string, config: JPCMConfig): string {
   const jiraTicket = matched && matched[0];
 
   if (!jiraTicket) {
-    throw new Error('The JIRA ticket ID not found');
+    return;
   }
 
   return jiraTicket.toUpperCase();

@@ -13,7 +13,7 @@ import { error, log } from './log';
     const ticket = git.getJiraTicket(branch, config);
 
     if (ticket) {
-      log(`Adding JIRA ticket ID ${ticket}`);
+      log(`🎫 Adding JIRA ticket ID ${ticket}`);
       git.writeJiraTicket(ticket, config);
     }
 
